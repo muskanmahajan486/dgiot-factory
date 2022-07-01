@@ -4,99 +4,6 @@
 // import { orderTypeMapper, payStatusMapper, payTypeMapper, statusMapper } from '../../enum-data';
 // import { serverHost } from '../../server-api';
 
-// const amisPageName = 'dashboard';
-
-// // 详情对话框
-// function detailsDialog() {
-//   return {
-//     type: 'button',
-//     label: '查看',
-//     level: 'info',
-//     size: 'xs',
-//     actionType: 'dialog',
-//     dialog: {
-//       title: '查看订单 - ${orderCode}',
-//       closeOnEsc: true,
-//       actions: [{ type: 'button', label: '关闭', level: 'primary', actionType: 'close' }],
-//       body: {
-//         type: 'form',
-//         // mode: "inline",
-//         className: classnames(FormClassName.label5x),
-//         initApi: {
-//           method: 'get',
-//           url: `${serverHost}/iotapi/curd-page@getDetail?orderId=$orderId`
-//         },
-//         controls: [
-//           { type: 'static', name: 'orderId', label: '订单ID' },
-//           { type: 'static', name: 'orderCode', label: '订单编号' },
-//           { type: 'mapping', name: 'status', label: '订单状态', map: enum2object(statusMapper) },
-//           { type: 'static', name: 'shipName', label: '收货人' },
-//           { type: 'static', name: 'shipMobile', label: '手机号' },
-//           { type: 'static', name: 'shipAddr', label: '地址' }
-//         ]
-//       }
-//     }
-//   };
-// }
-//
-// // 编辑对话框
-// function editDialog() {
-//   return {
-//     type: 'button',
-//     label: '编辑',
-//     level: 'info',
-//     size: 'xs',
-//     actionType: 'dialog',
-//     dialog: {
-//       size: 'xs',
-//       title: '编辑',
-//       data: {
-//         '&': '$$',
-//         shipName: '${shipName}',
-//         shipName2: '${shipName}'
-//       },
-//       body: {
-//         type: 'form',
-//         // mode: "inline",
-//         className: classnames(FormClassName.flex_label5x),
-//         // initApi: {
-//         //   method: "get",
-//         //   url: `${serverHost}/iotapi/curd-page@getDetail?orderId=$orderId`,
-//         // },
-//         api: {
-//           method: 'put',
-//           url: `${serverHost}/iotapi/curd-page@mockUpdate?orderId=$orderId`
-//         },
-//         controls: [
-//           { type: 'text', name: 'orderId', label: '订单ID' },
-//           { type: 'text', name: 'orderCode', label: '订单编号' },
-//           { type: 'select', name: 'status', label: '订单状态', options: statusMapper },
-//           { type: 'text', name: 'shipName', label: '收货人' },
-//           { type: 'text', name: 'shipName2', label: '收货人2' },
-//           { type: 'text', name: 'shipMobile', label: '手机号' },
-//           { type: 'textarea', name: 'shipAddr', label: '地址' }
-//         ]
-//       }
-//     }
-//   };
-// }
-//
-// // 删除对话框
-// function deleteDialog() {
-//   return {
-//     type: 'button',
-//     label: '删除',
-//     level: 'danger',
-//     size: 'xs',
-//     actionType: 'ajax',
-//     api: {
-//       method: 'delete',
-//       url: `${serverHost}/iotapi/curd-page@mockDelete?orderId=$orderId`
-//     },
-//     confirmText: '您确认要删除订单:${orderCode}?'
-//   };
-// }
-
 const schema = {
     "title": "15616",
     data:{
@@ -205,10 +112,6 @@ const schema = {
                                         {
                                             "type": "tpl",
                                             "tpl": "<span>当前选中值 ${value|json}<span>"
-                                        },
-                                        {
-                                            "type": "chart",
-                                            "api": "/amis/api/mock2/chart/chart1"
                                         }
                                     ]
                                 }
@@ -261,69 +164,6 @@ const schema = {
                             },
                             "replaceChartOption": true
                           }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "panel",
-            "title": "Form+chart组合",
-            "body": [
-                {
-                    "type": "form",
-                    "title": "过滤条件",
-                    "target": "chart1,chart2",
-                    "submitOnInit": true,
-                    "className": "m-b",
-                    "wrapWithPanel": false,
-                    "mode": "inline",
-                    "body": [
-                        {
-                            "type": "input-date",
-                            "label": "开始日期",
-                            "name": "starttime",
-                            "value": "-8days",
-                            "maxDate": "${endtime}"
-                        },
-                        {
-                            "type": "input-date",
-                            "label": "结束日期",
-                            "name": "endtime",
-                            "value": "-1days",
-                            "minDate": "${starttime}"
-                        },
-                        {
-                            "type": "input-text",
-                            "label": "条件",
-                            "name": "name",
-                            "addOn": {
-                                "type": "submit",
-                                "label": "搜索",
-                                "level": "primary"
-                            }
-                        }
-                    ],
-                    "actions": []
-                },
-                {
-                    "type": "divider"
-                },
-                {
-                    "type": "grid",
-                    "className": "m-t-lg",
-                    "columns": [
-                        {
-                            "type": "chart",
-                            "name": "chart1",
-                            "initFetch": false,
-                            "api": "/amis/api/mock2/chart/chart?name=$name&starttime=${starttime}&endtime=${endtime}"
-                        },
-                        {
-                            "type": "chart",
-                            "name": "chart2",
-                            "initFetch": false,
-                            "api": "/amis/api/mock2/chart/chart2?name=$name"
-                        }
                     ]
                 }
             ]

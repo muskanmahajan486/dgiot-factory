@@ -1,11 +1,11 @@
 {
-  "name": "dgiot-amis-dashboard",
+  "name": "dgiot-jiande",
   "version": "0.0.2",
   "private": false,
-  "description": "dgiot-amis-dashboard 脚手架",
+  "description": "dgiot-jiande 脚手架",
   "license": "MIT",
   "author": "h7ml(h7ml@qq.com)",
-  "homepage": "https://github.com/dgiot/dgiot-amis-dashboard.git",
+  "homepage": "https://github.com/dgiot/dgiot-jiande.git",
   "scripts": {
     "ncu": "ncu",
     "global-init": "yarn global add typescript && yarn global add npm-check-updates",
@@ -29,10 +29,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dgiot/dgiot-amis-dashboard.git"
+    "url": "git+https://github.com/dgiot/dgiot-jiande.git"
   },
   "bugs": {
-    "url": "https://github.com/dgiot/dgiot-amis-dashboard/issues"
+    "url": "https://github.com/dgiot/dgiot-jiande/issues"
   },
   "scripts-bak": {
     "ncu-u": "ncu -u"

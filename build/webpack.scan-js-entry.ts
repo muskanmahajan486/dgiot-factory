@@ -64,7 +64,7 @@ const scanJsEntry = (config: Configuration, srcPath: string, distPath: string, c
       favicon: faviconPath,
       appVersion: settings.appVersion,
       chunks: ["manifest", ...chunks, entryKey],
-      urlPrefix: enableCDN ? cdnPublicPath : '/dgiot-amis-dashboard/',
+      urlPrefix: enableCDN ? cdnPublicPath : '/dgiot-jiande/',
       isDevMode,
       ...base64Images,
     };

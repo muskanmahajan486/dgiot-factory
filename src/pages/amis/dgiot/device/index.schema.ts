@@ -105,12 +105,12 @@ function konvaDialog() {
         type: 'button',
         level: 'secondary',
         actionType: 'link', //link
-        link:'../dgiot-amis-dashboard/#/dashboard/index',
+        link:'../dgiot-jiande/#/dashboard/index',
         params:{
             "objectId": "jack",
             "jon": "player"
         }
-        // link: '../dgiot-amis-dashboard/#/dashboard/konva/${devaddr}/${product.objectId}'
+        // link: '../dgiot-jiande/#/dashboard/konva/${devaddr}/${product.objectId}'
     };
 }
 
@@ -174,7 +174,7 @@ const schema = {
                 // order: -createdAt
                 count: 'objectId',
                 order: '-createdAt',
-                where: {"product":{"$ne":"d5f1b2dcd8"}}
+                where: {"product":{"$ne":"ec71804a3d"}}  //ec71804a3d  d5f1b2dcd8  :{"$ne"
                 // where: {"product":""}
             },
             pageField: 'skip',

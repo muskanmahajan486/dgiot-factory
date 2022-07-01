@@ -50,10 +50,15 @@ const settings: Settings = {
     port: 8000,
     needOpenApp: false, // 自动打开浏览器
     /** 打开指定页面 */
-    openPage: "dgiot-amis-dashboard",
+    openPage: "dgiot-jiande",
     proxy: {
       "/iotapi/": {
         target: "http://121.5.171.21",
+        changeOrigin: true,
+        pathRewrite: { "^": "" }
+      },
+      "/upload": {
+        target: "http://121.5.171.21:1250",
         changeOrigin: true,
         pathRewrite: { "^": "" }
       },
@@ -71,7 +76,7 @@ const settings: Settings = {
   },
   needAnalyzer: true,
   COMPRESSION_TYPE:COMPRESSION_TYPE == "gzip",
-  defaultTitle: "dgiot-amis-dashboard",
+  defaultTitle: "dgiot-jiande",
   define: {
     isProdEnv: NODE_ENV === "production",
     enableCDN: enableCDN
@@ -79,7 +84,7 @@ const settings: Settings = {
   dateTime: new Date(),
   webpackBanner:
     `build: 杭州数蛙科技有限公司 \n copyright: dgiot \n project : ${pkg.name} \n version : ${pkg.version} \n description : ${pkg.description} \n author: ${pkg.author} \n time:`,
-  tokenName: "dgiot-amis-dashboard_token"
+  tokenName: "dgiot-jiande_token"
 };
 
 export { settings };

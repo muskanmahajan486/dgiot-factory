@@ -1,27 +1,27 @@
 #### 项目介绍
 <p align="center">
-  <img src="https://img.shields.io/github/commit-activity/m/dgiot/dgiot-amis-dashboard" alt="ommit-activity">
-	<img src="https://badgen.net/badge/package/%40dgiot%2Fdgiot-amis-dashboard/blue"
+  <img src="https://img.shields.io/github/commit-activity/m/dgiot/dgiot-jiande" alt="ommit-activity">
+	<img src="https://badgen.net/badge/package/%40dgiot%2Fdgiot-jiande/blue"
 	alt="package" maxretrytimes="3" class="m-1 transition-all duration-1000">
-	<img src="https://badgen.net/npm/v/@dgiot/dgiot-amis-dashboard" alt="Npm Version"
+	<img src="https://badgen.net/npm/v/@dgiot/dgiot-jiande" alt="Npm Version"
 	maxretrytimes="3" class="m-1 transition-all duration-1000">
-	<img src="https://badgen.net/npm/node/@dgiot/dgiot-amis-dashboard" alt="Node Version"
+	<img src="https://badgen.net/npm/node/@dgiot/dgiot-jiande" alt="Node Version"
 	maxretrytimes="3" class="m-1 transition-all duration-1000">
 	<br>
-	<img src="https://badgen.net/jsdelivr/hits/npm/@dgiot/dgiot-amis-dashboard"
+	<img src="https://badgen.net/jsdelivr/hits/npm/@dgiot/dgiot-jiande"
 	alt="Jsdeliver Month Downloads" maxretrytimes="3" class="m-1 transition-all duration-1000">
-	<img src="https://badgen.net/packagephobia/install/@dgiot/dgiot-amis-dashboard"
+	<img src="https://badgen.net/packagephobia/install/@dgiot/dgiot-jiande"
 	alt="Install Size" maxretrytimes="3" class="m-1 transition-all duration-1000">
-	<img src="https://badgen.net/npm/types/@dgiot/dgiot-amis-dashboard" alt="Type Support"
+	<img src="https://badgen.net/npm/types/@dgiot/dgiot-jiande" alt="Type Support"
 	maxretrytimes="3" class="m-1 transition-all duration-1000">
 	<br>
-	<img src="https://img.shields.io/librariesio/release/npm/@dgiot/dgiot-amis-dashboard"
+	<img src="https://img.shields.io/librariesio/release/npm/@dgiot/dgiot-jiande"
 	alt="Outdated Dep" maxretrytimes="3" class="m-1 transition-all duration-1000">
-	<img src="https://img.shields.io/snyk/vulnerabilities/npm/@dgiot/dgiot-amis-dashboard"
+	<img src="https://img.shields.io/snyk/vulnerabilities/npm/@dgiot/dgiot-jiande"
 	alt="Vulnerablities" maxretrytimes="3" class="m-1 transition-all duration-1000">
-  <a href="https://www.npmjs.com/package/@dgiot/dgiot-amis-dashboard"><img src="https://img.shields.io/npm/l/@dgiot/dgiot-amis-dashboard" alt="License"></a>
+  <a href="https://www.npmjs.com/package/@dgiot/dgiot-jiande"><img src="https://img.shields.io/npm/l/@dgiot/dgiot-jiande" alt="License"></a>
 <p>
-dgiot-amis-dashboard 是基于百度的 [amis](https://github.com/baidu/amis) 低代码框架开发的管理后台前端项目，旨在提供低门槛、高效率、开箱即用的管理后台前端项目。
+dgiot-jiande 是基于百度的 [amis](https://github.com/baidu/amis) 低代码框架开发的管理后台前端项目，旨在提供低门槛、高效率、开箱即用的管理后台前端项目。
 
 ##### 1.本项目的应用范围和人群
 1. 企业内部运营后端项目，功能较为简单的管理后台
@@ -37,7 +37,7 @@ dgiot-amis-dashboard 是基于百度的 [amis](https://github.com/baidu/amis) �
 
 ##### 3.效果预览
 
-线上预览地址: [http://121.5.171.21/dgiot-amis-dashboard](http://121.5.171.21/dgiot-amis-dashboard/) (dgiot_admin/dgiot_admin)
+线上预览地址: [http://121.5.171.21/dgiot-jiande](http://121.5.171.21/dgiot-jiande/) (dgiot_admin/dgiot_admin)
 
 #### 快速开始
 
@@ -57,7 +57,7 @@ yarn -v
 ##### 4.初始化 & 开发
 
 ```shell
-cd ./dgiot-amis-dashboard
+cd ./dgiot-jiande
 // 初始化
 yarn install
 // 开发

@@ -33,7 +33,7 @@ jobs:
       - name: Upload:Compression
         uses: actions/upload-artifact@v2
         with:
-          name: dgiot-amis-dashboard-Compression
+          name: dgiot-jiande-Compression
           path: dist
       - name: Deploy static to github pagese
         uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -46,7 +46,7 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
-          name: dgiot-amis-dashboard
+          name: dgiot-jiande
           path: dist
       - name: lighthouse 🚀
         uses: treosh/lighthouse-ci-action@v2
@@ -65,5 +65,5 @@ jobs:
           timeout: '1h'
           debug: true
           force_update: true
-          static_list: "dgiot-amis-dashboard"
+          static_list: "dgiot-jiande"
           black_list: "issue-generator,dgiot-dashboard"

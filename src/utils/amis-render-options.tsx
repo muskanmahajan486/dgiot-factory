@@ -90,6 +90,10 @@ axiosInstance.interceptors.request.use((request) => {
     const queryParams = getUrlParam(undefined, url);
     console.log("queryParams", queryParams);
     let token = Cookies.get('authorization') || ''
+    let departmentId = localStorage.getItem('demartmentId') || ''
+    console.log("1111department",departmentId);
+    
+    // let token = Cookies.get('authorization') || ''
     if (token) {
         request.headers["sessionToken"] = token
         // console.log("token11111",token);
@@ -100,14 +104,15 @@ axiosInstance.interceptors.request.use((request) => {
     if (queryParams.skip && queryParams.limit)
         queryParams.skip = (parseInt(queryParams.skip) - 1) * queryParams.limit
     console.log("queryParams", queryParams);
-    if (queryParams.where?.devaddr?.$regex == "" || queryParams.where?.devaddr?.$regex == undefined) {
-        delete  queryParams.where.devaddr
-        // console.log("这是修改过的api",api);
-    }
+    // if (queryParams.where?.devaddr?.$regex == "" || queryParams.where?.devaddr?.$regex == undefined) {
+    //     delete  queryParams.where.devaddr
+    //     // console.log("这是修改过的api",api);
+    // }
     request.params = queryParams
     // 将where[*] 的格式转换为object
     // const 
     // request.params = urlParseObject(request.url)
+
     // 适配 - 分页查询参数
     const { orderDir, orderBy } = queryParams;
     if (orderDir && orderBy && /(asc|desc)/.test(orderDir.toString())) {
@@ -140,7 +145,7 @@ axiosInstance.interceptors.response.use((response) => {
     if (status === 401) {
         // TODO 跳转到登录页面
         // console.log("这是未登录",location);
-        window.location.href = "../dgiot-amis-dashboard/#/blank/login"
+        window.location.href = "../dgiot-jiande/#/blank/login"
         return response;
     }
     // 支持amis返回值
@@ -179,8 +184,8 @@ axiosInstance.interceptors.response.use((response) => {
             aimsData.data = { rows: records, count: total, searchCount, pages, ...rest };
         }
     } else {
-        log.error('全局响应拦截[结束] data -> ', data);
-        aimsData.data = { rows: data.results, count: data.results.length, searchCount: true, pages: 100 };
+        // log.error('全局响应拦截[结束] data -> ', data);
+        aimsData.data = { rows: data.results, count: data.count, searchCount: true}; // count: data.results.length
     }
     log.info('全局响应拦截[结束] response -> ', response, aimsData);
     return response;
