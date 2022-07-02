@@ -15,6 +15,7 @@ function detailsDialog() {
         actionType: 'dialog',
         dialog: {
             title: '查看物料清单 ',
+            size: "lg",
             closeOnEsc: true,
             actions: [{ type: 'button', label: '关闭', level: 'primary', actionType: 'close' }],
             body: {
@@ -29,7 +30,8 @@ function detailsDialog() {
                         count: "objectId",
                         include: "product",
                         where:{
-                            parentId:"${objectId}"
+                            "name":{"$regex":"${name}"}
+                            // name:"${objectId}"
                         }
                         // "count": "objectId"
                     },
@@ -64,19 +66,52 @@ function detailsDialog() {
                     {
                         type: "table",
                         title: "工艺参数",
-                        source: "$list",
+                        source: "$rows",
                         style: "hieght:150px",
                         columns: [
                             {
+                                name: "content.DeviceAddr",
+                                label: "单据编号",
+                                width: 100
+                            },
+                            {
                                 name: "name",
-                                label: "参数名称",
+                                label: "子项物料名称",
+                                popOver: {
+                                    "trigger": "hover",
+                                    "showIcon": false,
+                                    "body": "${name}",
+                                    "popOverClassName": "min-w-0",
+                                    // "position": "left-center-right-center right-center-left-center"
+                                    // body: {
+                                    //     type: "tpl",
+                                    //     tpl: "${name}"
+                                    // }
+                                },
+                                className: 'overflow-hidden white-space-nowrap text-overflow-ellipsis',
+                                width: 125
+                            },
+                            {
+                                name: "content.Product_code",
+                                label: "产品编号",
                                 width: 80
                             },
                             {
-                                name: "value",
-                                label: "参数值",
+                                name: "content.Production_Order_No",
+                                label: "生产订单编号",
                                 width: 80
-                            }
+                            },
+                            {
+                                name: "content.Item_type",
+                                label: "子项类型",
+                                width: 80
+                            },
+                            {
+                                name: "content.Subitem_BOM_number",
+                                label: "子项物料编码",
+                                width: 80
+                            },
+                            
                         ]
                     }
                 ]
@@ -745,7 +780,7 @@ const schema = {
                                 // orderDir: 'desc',
                                 count: 'objectId',
                                 where: {
-                                    "product": "ec71804a3d", // "d5f1b2dcd8", 
+                                    "product": "ec71804a3d", // "d5f1b2dcd8",   
                                 }
                             },
                             // "source":"${results}",
@@ -776,7 +811,7 @@ const schema = {
                                     //     // maxDate: '${endtime}',
                                     //     placeholder: '结束时间',
                                     //     inputClassName: 'w-md',
-                                    //     format: "YYYY-MM-DD hh:mm:ss"
+                                    //     format: "YYYY-MM//-DD hh:mm:ss"
                                     // },
                                     // {
                                     //     type: 'button',
@@ -806,12 +841,12 @@ const schema = {
                                     width: 120
                                 },
                                 {
-                                    name: 'name',
+                                    name: 'content.DeviceName',
                                     label: '物料名称',
                                     popOver: {
                                         "trigger": "hover",
                                         "showIcon": false,
-                                        "body": "${name}",
+                                        "body": "${content.DeviceName}",
                                         "popOverClassName": "min-w-0",
                                         // "position": "left-center-right-center right-center-left-center"
                                         // body: {
@@ -909,8 +944,7 @@ const schema = {
                                 {
                                     name: 'content.personel.label',
                                     label: '派发人员'
-                                },
-                               
+                                },                 
                                 {
                                     type: 'operation',
                                     label: '操作',

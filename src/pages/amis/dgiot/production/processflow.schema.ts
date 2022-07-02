@@ -545,12 +545,12 @@ const schema = {
                   width: 120
                 },
                 {
-                  name: 'name',
+                  name: 'content.DeviceName',
                   label: '物料名称',
                   popOver: {
                     "trigger": "hover",
                     "showIcon": false,
-                    "body": "${name}",
+                    "body": "${content.DeviceName}",
                     "popOverClassName": "min-w-0",
                     // "position": "left-center-right-center right-center-left-center"
                     // body: {
