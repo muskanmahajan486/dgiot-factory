@@ -14,7 +14,7 @@ function detailsDialog() {
         // size: 'xs',
         actionType: 'dialog',
         dialog: {
-            title: '查看物料清单 ',
+            title: '查看用料清单 ',
             size: "lg",
             closeOnEsc: true,
             actions: [{ type: 'button', label: '关闭', level: 'primary', actionType: 'close' }],
@@ -26,71 +26,38 @@ function detailsDialog() {
                     url: `/iotapi/classes/Device`,
                     data: {
                         skip: 1,
-                        limit:100,
+                        limit: 100,
                         count: "objectId",
                         include: "product",
-                        where:{
-                            "name":{"$regex":"${name}"}
+                        where: {
+                            "name": { "$regex": "${name}" },
+                            'product': 'b1764e0984'
                             // name:"${objectId}"
                         }
                         // "count": "objectId"
                     },
-                    // "adaptor": "return {\n    ...payload,\n    count:payload.count,\n results:payload.results \n}",
-    
-                    //   responseData: {
-                    //     "$": "$$",
-                    //     count: '${total}',
-                    //     rows: '${items}'
-                    //   }
-                    // },
+
                     adaptor: function (payload: any, response: any, api: any) {
-                      console.log("payloadtree", payload);
-                      // let options =  getuserList(payload.data.rows)
-                      // console.log('fasfaf',options);
-    
-                      // payload.data.options =  getTreeParents(payload.data.options)
-                      // console.log("转换树options", payload.data.options);
-                      return {
-                        // ...payload,
-                        data: {
-                          count: payload.data.count,
-                          rows: payload.data.rows
-                        },
-                        status: 0,
-                        msg: 'ok'
-                      };
+                        console.log("payloadtree", payload);
+                        return {
+                            // ...payload,
+                            data: {
+                                count: payload.data.count,
+                                rows: payload.data.rows
+                            },
+                            status: 0,
+                            msg: 'ok'
+                        };
                     }
-                  },
+                },
                 className: classnames(FormClassName.label5x),
                 body: [
                     {
                         type: "table",
-                        title: "工艺参数",
+                        title: "用料清单列表",
                         source: "$rows",
                         style: "hieght:150px",
                         columns: [
-                            {
-                                name: "content.DeviceAddr",
-                                label: "单据编号",
-                                width: 100
-                            },
-                            {
-                                name: "name",
-                                label: "子项物料名称",
-                                popOver: {
-                                    "trigger": "hover",
-                                    "showIcon": false,
-                                    "body": "${name}",
-                                    "popOverClassName": "min-w-0",
-                                    // "position": "left-center-right-center right-center-left-center"
-                                    // body: {
-                                    //     type: "tpl",
-                                    //     tpl: "${name}"
-                                    // }
-                                },
-                                className: 'overflow-hidden white-space-nowrap text-overflow-ellipsis',
-                                width: 125
-                            },
                             {
                                 name: "content.Product_code",
                                 label: "产品编号",
@@ -102,16 +69,45 @@ function detailsDialog() {
                                 width: 80
                             },
                             {
+                                name: "content.Name_of_subitem_material",
+                                label: "子项物料名称",
+                                popOver: {
+                                    "trigger": "hover",
+                                    "showIcon": false,
+                                    "body": "${content.Name_of_subitem_material}",
+                                    "popOverClassName": "min-w-0",
+                                    // "position": "left-center-right-center right-center-left-center"
+                                    // body: {
+                                    //     type: "tpl",
+                                    //     tpl: "${name}"
+                                    // }
+                                },
+                                className: 'overflow-hidden white-space-nowrap text-overflow-ellipsis',
+                                width: 125
+                            },
+
+
+                            {
                                 name: "content.Item_type",
-                                label: "子项类型",
+                                label: "规格型号",
                                 width: 80
+                            },
+                            {
+                                name: "content.Should_send_number",
+                                label: "应发数量",
+                                width: 100
+                            },
+                            {
+                                name: "content.Get_number",
+                                label: "已领数量",
+                                width: 100
                             },
                             {
                                 name: "content.Subitem_BOM_number",
                                 label: "子项物料编码",
                                 width: 80
                             },
-                            
+
                         ]
                     }
                 ]
@@ -147,7 +143,7 @@ function distDialog() {
                     requestAdaptor: function (api: any) {
                         console.log('api数据查看', api.data);
                         let setAcl = api.data.ACL
-                        let index = 0
+                        // let index = 0
                         // for (let i in setAcl){
                         //     if(setAcl[i].write&&setAcl[i].write ==true){ //i !=getRoleId()&&
                         //         setAcl[i].write = false
@@ -172,6 +168,9 @@ function distDialog() {
                         let ctt = api.data.content
                         let list = ctt.personlist || []
                         ctt.personel = api.data.dept
+                        
+                        
+                        // console.log('materiallist',api.data.material_list.toString())
                         list.push(api.data.dept)
                         ctt.personlist = list
                         ctt.compnum = 0
@@ -252,6 +251,48 @@ function distDialog() {
                             }
                         },
                         required: true
+                    },
+                    {
+                        name: 'content.material_list',
+                        type: 'select',
+                        label: '用料清单',
+                        multiple: true,
+                        searchable: true,
+                        // source: "/usemock/getWuliao",
+                        source: {
+                            method: 'get',
+                            url: `/iotapi/classes/Device`,
+                            data: {
+                                skip: 1,
+                                limit: 100,
+                                count: "objectId",
+                                include: "product",
+                                where: {
+                                    "name": { "$regex": "${name}" },
+                                    'product': 'b1764e0984'
+                                    // name:"${objectId}"
+                                }
+                                // "count": "objectId"
+                            },
+                            adaptor: function (payload: any, response: any, api: any) {
+                                console.log("用料", payload);
+                                return {
+                                    // ...payload,
+                                    data: {
+                                        // count: payload.data.count,
+                                        items: payload.data.rows
+                                    },
+                                    status: 0,
+                                    msg: 'ok'
+                                };
+                            },
+                            responseData: {
+                                options: "${items|pick:label~content.Name_of_subitem_material,value~content.Item_type}"
+                            },
+                        },
+                       
+                        // deferApi: "/usemock/device/listAll",
+                        required: false
                     },
                     {
                         type: "input-file",
@@ -857,14 +898,14 @@ const schema = {
                                     className: 'overflow-hidden white-space-nowrap text-overflow-ellipsis',
                                     width: 125
                                 },
-                               
+
                                 {
                                     name: 'content.Documents_state',
                                     label: '单据状态'
                                 },
                                 {
-                                    name:'content.Specifications',
-                                    label:'规格型号',
+                                    name: 'content.Specifications',
+                                    label: '规格型号',
                                     width: 200
                                 },
                                 {
@@ -884,7 +925,7 @@ const schema = {
                                     name: 'content.Production_workshop',
                                     label: '生产车间'
                                 },
-                                
+
                                 {
                                     name: 'content.Number',
                                     label: '数量'
@@ -944,7 +985,7 @@ const schema = {
                                 {
                                     name: 'content.personel.label',
                                     label: '派发人员'
-                                },                 
+                                },
                                 {
                                     type: 'operation',
                                     label: '操作',
@@ -990,7 +1031,7 @@ const schema = {
                                                             // required: true,
                                                             disabledOn: "${false}"
                                                         },
-                                                       
+
                                                         // {
                                                         //     name: 'content.step',
                                                         //     type: 'input-text', //nested-select
@@ -1026,10 +1067,10 @@ const schema = {
                                                         },
                                                         {
                                                             type: "image",
-                                                            source:'content.imageUrl',
+                                                            source: 'content.imageUrl',
                                                             // name:'content.imageUrl',
                                                             src: "${content.imageUrl}",
-                                                            enlargeAble:true,
+                                                            enlargeAble: true,
                                                             // "thumbMode": "w-full"
                                                         },
                                                         {
@@ -1086,7 +1127,7 @@ const schema = {
                                                 body: {
                                                     body: [
 
-                                                      
+
                                                         {
                                                             mode: 'inline',
                                                             name: 'title',
@@ -1122,7 +1163,7 @@ const schema = {
                                                                     name: "prom",
                                                                     label: "产品型号",
                                                                     groupName: "${devaddr}"
-                                                                }, 
+                                                                },
                                                                 {
                                                                     name: "ymodel",
                                                                     label: "原料型号",
@@ -1216,7 +1257,7 @@ const schema = {
                                                                     name: "bprom",
                                                                     label: "半成品型号",
                                                                     groupName: "${devaddr}"
-                                                                },  
+                                                                },
                                                                 {
                                                                     name: "ymodel",
                                                                     label: "原料型号",
